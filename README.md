@@ -14,4 +14,4 @@
   - Structured data: MySQL on AWS RDS, with Hibernate
   - Media files: Google Cloud Storage
 ## Deployment
-  - AWS EC via Docker
+  - AWS EC2 via Docker
