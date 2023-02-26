@@ -3,8 +3,8 @@
   - Features:
     - registration as a host/guest
     - login (with authentication) as a host/guest
-    - reserve and search a hotel as a guest
-    - add, update, delete a hotel record as a host
+    - hotel reservation and search as a guest
+    - hotel adding, update, deletion as a host
 
 ## FrontEnd
   - React, with React.Bootstrap
