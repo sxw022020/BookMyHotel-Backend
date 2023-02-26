@@ -2,7 +2,7 @@
   - A single-page web application for hotel booking
   - Features:
     - registration as a host/guest
-    - login as a host/guest
+    - login (with authetication) as a host/guest
     - reserve and search a hotel as a guest
     - add, update, delete a hotel record as a host
 
