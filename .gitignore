@@ -7,6 +7,9 @@ target/
 ### configuration ###
 application.properties
 
+### notes ###
+Notes.md
+
 ### STS ###
 .apt_generated
 .classpath
