@@ -9,8 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @EnableWebSecurity enables web security in a Spring Boot application
+ *
+ * When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's
+ * endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
+ */
 @EnableWebSecurity
+/** @Configuration: Indicates that the class is a configuration class that declares Spring beans. */
 @Configuration
+/** WebSecurityConfigurerAdapter provides a convenient base class for customizing Spring Security's web security configuration. */
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
@@ -28,11 +36,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Define the security configuration for your application's HTTP endpoints
+     *
+     * @param http the {@link HttpSecurity} to modify
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /**
          * In summary, this code allows unauthenticated access to any HTTP POST request to a URL that starts with /register/,
          * and requires authentication for all other requests.
+         * That is, this specifies that all requests to the application's endpoints should be authenticated,
+         * except those that start with /registration/*, which can be accessed by anyone.
+         *
          * It also disables CSRF protection for the application.
          */
         http
@@ -49,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 // specifies that authenticated users are allowed to access any request that matches this rule
                 .authenticated()
-                // TODO
+                // add another configuration
                 .and()
                 // configures Cross-Site Request Forgery (CSRF) protection for the application
                 .csrf()
