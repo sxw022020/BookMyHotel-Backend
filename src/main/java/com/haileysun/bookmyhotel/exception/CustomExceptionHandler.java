@@ -6,12 +6,32 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+/**
+ * @ControllerAdvice
+ * This annotation indicates that the class is an exception handler that applies
+ * to all controllers in the application.
+ */
 @ControllerAdvice
 public class CustomExceptionHandler {
+    /**
+     * @ExceptionHandler(UserAlreadyExistException.class)
+     * This annotation indicates that the handleUserAlreadyExistExceptions method
+     * should be invoked when a UserAlreadyExistException is thrown.
+     */
     @ExceptionHandler(UserAlreadyExistException.class)
-    // TODO
+    /**
+     * This method takes in the Exception object that was thrown and the WebRequest object
+     * associated with the request that caused the exception.
+     * It then creates a new ResponseEntity with the error message and HttpStatus.CONFLICT status code.
+     */
+    // TODO - "request" 没被用
     public final ResponseEntity<String> handleUserAlreadyExistExceptions(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+        /**
+         * The "ResponseEntity<String>" return type indicates that this method will return
+         * an HTTP response entity with a body that contains a String.
+         * The HTTP response entity can include status codes, headers, and a response body.
+         */
     }
 
     @ExceptionHandler(UserNotExistException.class)
