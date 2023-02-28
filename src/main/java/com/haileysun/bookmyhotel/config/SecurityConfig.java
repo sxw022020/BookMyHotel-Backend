@@ -1,13 +1,18 @@
 package com.haileysun.bookmyhotel.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 /**
  * @EnableWebSecurity enables web security in a Spring Boot application
@@ -36,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private DataSource dataSource;
+
     /**
      * Define the security configuration for your application's HTTP endpoints
      *
@@ -61,6 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/registration/*")
                 // allows unauthenticated access to the matched requests
                 .permitAll()
+
+                .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
+
                 // configures how requests that do not match any previous rules are authorized.
                 // In this case, any request that does not match /register/* is required to be authenticated
                 .anyRequest()
@@ -72,5 +83,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 // disables CSRF protection
                 .disable();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // read user/authority data from the MySQL database for authentication
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .passwordEncoder(passwordEncoder())
+                .usersByUsernameQuery("SELECT username, password, enabled FROM user WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, authority FROM authority WHERE username = ?");
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
