@@ -47,9 +47,9 @@ public class Authority {
     }
 
     public static class Builder {
-        @JsonProperty
+        @JsonProperty("username")
         private String username;
-        @JsonProperty
+        @JsonProperty("authority")
         private String authority;
 
         public Builder setUsername(String username) {
