@@ -35,6 +35,11 @@
 4. `@Autowired`
    - Automatically inject a dependency into a Spring bean.
    - ***Constructor injection*** is generally considered to be the best practice for dependency injection in Spring.
+     - ***Why Constructor injection is preferred?***
+       - Clear Dependencies: 
+         - Constructor injection makes the dependencies of a class explicit by requiring them to be passed as parameters to the constructor. This makes it easier to understand the dependencies of a class and reduces the likelihood of accidentally missing a dependency.
+       - Testability: 
+         - Constructor injection makes it easier to write unit tests for a class because it allows the dependencies to be easily mocked or replaced with test doubles. This can make it easier to isolate the class being tested and make the tests more reliable.
     ```Java
     @Service
     public class MyService {
@@ -47,7 +52,6 @@
         }
     }
     ```
-     
 5. `@PostMapping`
    - Equal to `@RequestMapping(method = RequestMethod. POST)`
    - Maps HTTP POST requests to a specific controller method.
