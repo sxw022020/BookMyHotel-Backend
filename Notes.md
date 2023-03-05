@@ -141,3 +141,23 @@
       - `SERIALIZABLE` is the highest level of isolation. It prevents all mentioned concurrency side effects, but can lead to the lowest concurrent access rate because it executes concurrent calls sequentially. In other words, concurrent execution of a group of serializable transactions has the same result as executing them in serial.
       - `isolation = Isolation.SERIALIZABLE` indicates that the transaction should be executed in a way that ensures that the result is the same as if the transactions were executed one after the other, in a serialized manner. 
       - This level provides the highest level of data consistency, but it can also lead to reduced concurrency and increased locking.
+16. `@Value("{xxx}")`
+    - Inject values into fields or constructor parameters. 
+      ```java
+        @Component
+        public class MyClass {
+    
+            // 1. field
+            @Value("${my.property}")
+            private String myProperty;
+    
+            // 2. constructor param
+            private final String myProperty;
+
+            @Autowired
+            public MyClass(@Value("${my.property}") String myProperty) {
+                this.myProperty = myProperty;
+            }
+        }
+      ```
+    - It is typically used to inject configuration properties or other values into Spring-managed beans
