@@ -23,16 +23,18 @@
       - In Spring Framework, a bean is an object that is managed by the ***Spring IoC (Inversion of Control) container***, which provides various benefits such as dependency injection and lifecycle management.
       - By annotating a method with `@Bean`, we are telling the Spring container that the return value of that method is a bean that should be managed by the container. 
       - When the Spring container starts up, the container will then call the method to obtain an instance of the bean whenever the bean is needed by other parts of the application.
-      ```
+      ```Java
+      public class SecurityConfig extends WebSecurityConfigurerAdapter {
         @Bean
         public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+            return new BCryptPasswordEncoder();
         }
+      }
       ```
       - In this case, the Spring container will create a new instance of BCryptPasswordEncoder and register it as a bean with the name passwordEncoder.
 4. `@Autowired`
       - Automatically inject a dependency into a Spring bean.
-      - ***Constructor injection** is generally considered to be the best practice for dependency injection in Spring.
+      - ***Constructor injection*** is generally considered to be the best practice for dependency injection in Spring.
       ```Java
       @Service
       public class MyService {
