@@ -37,6 +37,15 @@ public class Authority {
     }
 
     // Empty constructor
+    /**
+     * when Spring creates an instance of a class,
+     * it first creates an empty object using the default constructor and
+     * then populates its properties using setters, constructors or fields injection.
+     *
+     * If you don't provide an empty constructor,
+     * Spring won't be able to create an instance of your class using the default constructor,
+     * and you'll get a runtime error.
+     */
     public Authority() {};
 
     // Builder Pattern for constructor

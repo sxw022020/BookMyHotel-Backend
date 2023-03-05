@@ -54,11 +54,11 @@
         }
     }
     ```
-5. `@PostMapping`
+5. `@PostMapping("url_path")`
     - Equal to `@RequestMapping(method = RequestMethod. POST)`
     - Maps HTTP POST requests to a specific controller method.
         - `@PostMapping("/authenticate/host")`
-6. `@RequestBody`
+6. `@RequestBody("url_path")`
     - Indicates that the parameter of a controller method should be bound to the body of the HTTP request.
     - Spring will automatically ***deserialize*** the request body into an instance of the parameter type. 
     - This is useful when the HTTP request contains data in a specific format such as JSON, XML, or form data.
@@ -67,8 +67,30 @@
     - Indicates that the class is a controller that handles HTTP requests and returns the response as a JSON, XML or any other representation.
 8. `@Entity`
     - Marks a Java class as a persistent entity, meaning that it can be mapped to a corresponding table in a relational database.
-9. `@Table(name = "xxx")`
-    - Table name for a persistent entity.
+9. `@Table(name = "table_name")`
+    - Table name as "xxx" for a persistent entity.
 10. `@Id`
     - Defines primary key of a persistent entity.
-11. ``
+11. `@JsonProperty("custom_col_name")`
+    - Specifies the names of the JSON properties that are returned to the response.
+    - If you use ***Builder Pattern*** as a constructor, put `@JsonProperty("custom_col_name")` in Builder class.
+12. `@JsonIgnore`
+    - A Jackson annotation used in Java.
+    - Indicates that a particular field or property of a Java class should be ignored during serialization and deserialization.
+      - Serialization:
+        - The process of converting a Java object into a JSON representation,
+      - Deserialization:
+        - The process of converting JSON into a Java object.
+    - When `@JsonIgnore` is added to a field or property in a Java class, Jackson will not include that field or property in the JSON output during serialization. 
+    - Similarly, when deserializing JSON input into a Java object, Jackson will ignore the JSON field that corresponds to the ignored Java field or property.
+13. `@JsonDeserialize(xxx)`
+    - Specifies a custom deserializer for a Java ***object field*** or ***setter method***.
+    - When a Java class field or setter method is annotated with @JsonDeserialize, it indicates that the corresponding JSON property should be deserialized using a custom deserializer class instead of the default deserialization mechanism provided by Jackson.
+    ```Java
+    @JsonDeserialize(builder = User.Builder.class)
+    public class User implements Serializable {
+        ///...
+    }
+    ```
+
+stop at /entity/Stay

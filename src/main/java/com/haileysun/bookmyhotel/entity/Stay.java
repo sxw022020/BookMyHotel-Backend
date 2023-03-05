@@ -30,19 +30,6 @@ public class Stay implements Serializable {
     @JoinColumn(name = "user_id")
     private User host;
     @JsonIgnore
-    /**
-     * @JsonIgnore is a Jackson annotation used in Java to indicate
-     * that a particular field or property of a Java class should be ignored
-     * during serialization and deserialization.
-     *
-     * Serialization is the process of converting a Java object into a JSON representation,
-     * while deserialization is the process of converting JSON into a Java object.
-     *
-     * When @JsonIgnore is added to a field or property in a Java class,
-     * Jackson will not include that field or property in the JSON output during serialization.
-     * Similarly, when deserializing JSON input into a Java object,
-     * Jackson will ignore the JSON field that corresponds to the ignored Java field or property.
-     */
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StayAvailability> availabilities;
 
@@ -58,8 +45,9 @@ public class Stay implements Serializable {
      */
     public Stay(){}
 
-    // another constructor
-    public Stay(Builder builder) {
+    // Builder Pattern for constructor
+    // `private` --> only Builder can access it, outside caller cannot access it
+    private Stay(Builder builder) {
         this.stay_id = builder.stay_id;
         this.name = builder.name;
         this.description = builder.description;

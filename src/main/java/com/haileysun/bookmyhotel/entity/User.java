@@ -58,10 +58,7 @@ public class User implements Serializable {
     }
 
     public static class Builder {
-        /**
-         * @JsonProperty is a Java annotation that is used to map a
-         * Java class property or field to a JSON property during serialization and deserialization.
-         */
+
         @JsonProperty("username")
         private String username;
 

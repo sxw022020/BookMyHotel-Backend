@@ -1,5 +1,7 @@
 package com.haileysun.bookmyhotel.entity;
 
+// Not an "entity"
+// just for creation of token
 public class Token {
 
     private final String token;
