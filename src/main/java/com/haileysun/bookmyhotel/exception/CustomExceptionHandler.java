@@ -6,18 +6,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-/**
- * @ControllerAdvice
- * This annotation indicates that the class is an exception handler that applies
- * to all controllers in the application.
- */
 @ControllerAdvice
 public class CustomExceptionHandler {
-    /**
-     * @ExceptionHandler(UserAlreadyExistException.class)
-     * This annotation indicates that the handleUserAlreadyExistExceptions method
-     * should be invoked when a UserAlreadyExistException is thrown.
-     */
+
     @ExceptionHandler(UserAlreadyExistException.class)
     /**
      * This method takes in the Exception object that was thrown and the WebRequest object

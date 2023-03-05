@@ -126,5 +126,10 @@
         ///...
     }
     ```
-
-stop at /entity/Stay
+14. `@ControllerAdvice`
+    - Adds for a class.
+    - Indicates that the class is an exception handler class that applies to all controllers in the application.
+    `@ExceptionHandler(exceptionClassName.class)`
+    - Adds for a method in an exception handler class.
+    - Indicates that a method should be invoked when a specific exception is thrown.
+    - See "/exception/CustomExceptionHandler"
