@@ -14,8 +14,9 @@ public class StayAvailability implements Serializable {
 
     @EmbeddedId
     // TODO
-    private StayAvailabilityKey id;
+    private StayAvailabilityKey stayAvailabilityID;
 
+    // TODO - MapsId?
     @MapsId("stay_id")
     @ManyToOne
     private Stay stay;
@@ -27,14 +28,14 @@ public class StayAvailability implements Serializable {
 
     // another constructor
     private StayAvailability(Builder builder) {
-        this.id = builder.id;
+        this.stayAvailabilityID = builder.stayAvailabilityID;
         this.stay = builder.stay;
         this.state = builder.state;
     }
 
     // getters
     public StayAvailabilityKey getId() {
-        return id;
+        return stayAvailabilityID;
     }
 
     public Stay getStay() {
@@ -54,8 +55,8 @@ public class StayAvailability implements Serializable {
          * - Similarly, when JSON data is deserialized into an instance of this class,
          * the "first_name" property in the JSON data will be mapped to the firstName field.
          */
-        @JsonProperty("id")
-        private StayAvailabilityKey id;
+        @JsonProperty("stayAvailability_id")
+        private StayAvailabilityKey stayAvailabilityID;
 
         @JsonProperty("stay")
         private Stay stay;
@@ -65,7 +66,7 @@ public class StayAvailability implements Serializable {
 
         // setters
         public Builder setId(StayAvailabilityKey id) {
-            this.id = id;
+            this.stayAvailabilityID = id;
             return this;
         }
 

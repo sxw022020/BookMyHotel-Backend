@@ -165,8 +165,20 @@
     - It is typically used to inject configuration properties or other values into Spring-managed beans.
 17. `@ManyToOne`
     - Defines a many-to-one relationship between two entities.
+    - This annotation is used on the child entity ("Many") to specify that it has a many-to-one relationship with a parent entity ("One").
     - ***Many***: current class (i.e. current entity)
     - ***One***: another class (i.e. another entity) which is annotated by `@ManyToOne`
+    - `@JoinColumn(name = "xxx", referencedColumnName = "xxx")`
+      - Joins two tables in a many-to-one or one-to-one relationship.
+      - `name`
+        - specifies name of foreign key in current class (i.e. current entity)
+      - `referencedColumnName`
+        - specifies the name of the primary key column in another class (i.e. another entity)
+        - If the `referencedColumnName` attribute is not specified, Spring framework will use the default primary key column name of the referenced entity.
+      - ***Note:***
+        - If the `@JoinColumn` annotation is not used, Spring framework will generate a default foreign key column name based on the name of the field or property that represents the relationship.
+    - `@MapsId`
+      - Maps a child entity's primary key to its parent entity's primary key.
     ```java
     public class Stay {
         @Id
@@ -176,6 +188,8 @@
         // Many: Stay
         // One: User
         @ManyToOne
+        // foreign key in Stay: username
+        // 
         @JoinColumn(name = "user_id")
         private User host;
     
@@ -183,3 +197,15 @@
     }
 
     ```
+18. `@OneToMany(mappedBy = "xxx", cascade = CascadeType.xxx, fetch = FetchType.xxx)`
+    - Defines a one-to-many relationship between two entities.
+    - This annotation is used on the parent entity ("One") to specify that it has a one-to-many relationship with one or more child entities ("Many")
+    - ***It's important to note that the child entity ("Many") must have a corresponding relationship mapping (i.e. `@ManyToOne`) on its side.***
+    - `mappedBy` 
+      - Specifies the name of the field or property in the child entity that owns the relationship.
+    - `cascade` 
+      - Specifies that changes to the parent entity should cascade to the child entities.
+      - `fetch = FetchType.LAZY` 
+        - Specifies that a related entity should not be loaded from the database until it is explicitly accessed. 
+      - `fetch = FetchType.EAGER`
+        - Specifies that a related entity should be loaded immediately along with the parent entity.

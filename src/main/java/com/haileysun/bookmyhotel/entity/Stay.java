@@ -29,6 +29,7 @@ public class Stay implements Serializable {
     @JoinColumn(name = "user_id")
     private User host;
     @JsonIgnore
+    // TODO - mappedBy + FetchType.LAZY?
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StayAvailability> availabilities;
 
@@ -88,7 +89,7 @@ public class Stay implements Serializable {
     // TODO - 课件里这有个setter, 忘记删了?
 
     public static class Builder {
-        @JsonProperty("id")
+        @JsonProperty("stay_id")
         private Long stay_id;
 
         @JsonProperty("name")
