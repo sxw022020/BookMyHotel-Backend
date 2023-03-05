@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+// act as a portion of base URL
 @RequestMapping("/registration")
 public class RegistrationController {
 

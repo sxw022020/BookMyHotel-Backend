@@ -4,7 +4,6 @@ import com.haileysun.bookmyhotel.entity.Authority;
 import com.haileysun.bookmyhotel.entity.Token;
 import com.haileysun.bookmyhotel.entity.User;
 import com.haileysun.bookmyhotel.entity.UserRole;
-import com.haileysun.bookmyhotel.exception.UserAlreadyExistException;
 import com.haileysun.bookmyhotel.exception.UserNotExistException;
 import com.haileysun.bookmyhotel.repository.AuthorityRepository;
 import com.haileysun.bookmyhotel.util.JwtUtil;
@@ -34,6 +33,8 @@ public class AuthenticationService {
             throw new UserNotExistException("User Doesn't Exist!");
         }
 
+        // find "username" in "user" table
+        // "JpaRepository<Authority, String>" defines which table to do query
         Authority authority = authorityRepository.findById(user.getUsername()).orElse(null);
         if (authority == null || !authority.getAuthority().equals(role.name())) {
             throw new UserNotExistException("User Doesn't Exist!");

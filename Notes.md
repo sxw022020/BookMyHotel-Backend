@@ -15,14 +15,14 @@
 
 ### Annotations:
 1. `@EnableWebSecurity`
-   - When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
+    - When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
 2. `@Configuration`
-   - Indicates that the class is a configuration class that declares Spring beans.
+    - Indicates that the class is a configuration class that declares Spring beans.
 3. `@Bean`
-   - Indicates that a ***method*** is a provider of a bean instance for the Spring container. 
-   - In Spring Framework, a bean is an object that is managed by the ***Spring IoC (Inversion of Control) container***, which provides various benefits such as dependency injection and lifecycle management.
-   - By annotating a method with `@Bean`, we are telling the Spring container that the return value of that method is a bean that should be managed by the container. 
-   - When the Spring container starts up, the container will then call the method to obtain an instance of the bean whenever the bean is needed by other parts of the application.
+    - Indicates that a ***method*** is a provider of a bean instance for the Spring container. 
+    - In Spring Framework, a bean is an object that is managed by the ***Spring IoC (Inversion of Control) container***, which provides various benefits such as dependency injection and lifecycle management.
+    - By annotating a method with `@Bean`, we are telling the Spring container that the return value of that method is a bean that should be managed by the container. 
+    - When the Spring container starts up, the container will then call the method to obtain an instance of the bean whenever the bean is needed by other parts of the application.
     ```Java
     public class SecurityConfig extends WebSecurityConfigurerAdapter { 
         @Bean
@@ -31,15 +31,17 @@
         }
     }
     ```
-  - In this case, the Spring container will create a new instance of BCryptPasswordEncoder and register it as a bean with the name passwordEncoder.
+   - In this case, the Spring container will create a new instance of BCryptPasswordEncoder and register it as a bean with the name passwordEncoder.
 4. `@Autowired`
-   - Automatically inject a dependency into a Spring bean.
-   - ***Constructor injection*** is generally considered to be the best practice for dependency injection in Spring.
-     - ***Why Constructor injection is preferred?***
-       - Clear Dependencies: 
-         - Constructor injection makes the dependencies of a class explicit by requiring them to be passed as parameters to the constructor. This makes it easier to understand the dependencies of a class and reduces the likelihood of accidentally missing a dependency.
-       - Testability: 
-         - Constructor injection makes it easier to write unit tests for a class because it allows the dependencies to be easily mocked or replaced with test doubles. This can make it easier to isolate the class being tested and make the tests more reliable.
+    - Automatically inject a dependency into a Spring bean.
+    - ***Constructor injection*** is generally considered to be the best practice for dependency injection in Spring.
+        - ***Why Constructor injection is preferred?***
+           - **Clear Dependencies**: 
+             - Constructor injection makes the dependencies of a class explicit by requiring them to be passed as parameters to the constructor. 
+             - This makes it easier to understand the dependencies of a class and reduces the likelihood of accidentally missing a dependency.
+           - **Testability**: 
+             - Constructor injection makes it easier to write unit tests for a class because it allows the dependencies to be easily mocked or replaced with test doubles. 
+             - This can make it easier to isolate the class being tested and make the tests more reliable.
     ```Java
     @Service
     public class MyService {
@@ -53,14 +55,20 @@
     }
     ```
 5. `@PostMapping`
-   - Equal to `@RequestMapping(method = RequestMethod. POST)`
-   - Maps HTTP POST requests to a specific controller method.
-     - `@PostMapping("/authenticate/host")`
+    - Equal to `@RequestMapping(method = RequestMethod. POST)`
+    - Maps HTTP POST requests to a specific controller method.
+        - `@PostMapping("/authenticate/host")`
 6. `@RequestBody`
-   - Indicates that the parameter of a controller method should be bound to the body of the HTTP request.
-   - Spring will automatically ***deserialize*** the request body into an instance of the parameter type. 
-   - This is useful when the HTTP request contains data in a specific format such as JSON, XML, or form data.
+    - Indicates that the parameter of a controller method should be bound to the body of the HTTP request.
+    - Spring will automatically ***deserialize*** the request body into an instance of the parameter type. 
+    - This is useful when the HTTP request contains data in a specific format such as JSON, XML, or form data.
 7. `@RestController`
-   - Combines the `@Controller` and `@ResponseBody` annotations, making it easier to create RESTful web services.
-   - Indicates that the class is a controller that handles HTTP requests and returns the response as a JSON, XML or any other representation.
-8.  
+    - Combines the `@Controller` and `@ResponseBody` annotations, making it easier to create RESTful web services.
+    - Indicates that the class is a controller that handles HTTP requests and returns the response as a JSON, XML or any other representation.
+8. `@Entity`
+    - Marks a Java class as a persistent entity, meaning that it can be mapped to a corresponding table in a relational database.
+9. `@Table(name = "xxx")`
+    - Table name for a persistent entity.
+10. `@Id`
+    - Defines primary key of a persistent entity.
+11. ``

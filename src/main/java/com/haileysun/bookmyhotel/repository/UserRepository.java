@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-    // <User, String>:
-    // name of entity class, ID type of the entity class
+    // the entity class (User) and the type of the entity's primary key (String)
 }
