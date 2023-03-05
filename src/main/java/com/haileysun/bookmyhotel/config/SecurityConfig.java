@@ -14,28 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-/**
- * @EnableWebSecurity enables web security in a Spring Boot application
- *
- * When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's
- * endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
- */
 @EnableWebSecurity
-/** @Configuration: Indicates that the class is a configuration class that declares Spring beans. */
 @Configuration
 /** WebSecurityConfigurerAdapter provides a convenient base class for customizing Spring Security's web security configuration. */
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * @Bean:
-     * indicating that it should create and return a new instance of PasswordEncoder.
-     *
-     * When the Spring container starts up,
-     * it will scan for all @EnableWebSecurity classes and
-     * create instances of any @Bean methods that they define.
-     * In this case, the Spring container will create a new instance of BCryptPasswordEncoder and
-     * register it as a bean with the name passwordEncoder.
-     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

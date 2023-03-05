@@ -14,5 +14,47 @@
 - Overall, the servlet container and the DispatcherServlet work together to intercept incoming requests, determine which controller to invoke, and process the request and generate the response. Spring provides a number of abstractions and configuration options to make this process flexible and customizable.
 
 ### Annotations:
-(1) @EnableWebSecurity
-  - When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
+  (1) `@EnableWebSecurity`
+      - When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
+  (2) `@Configuration`
+      - Indicates that the class is a configuration class that declares Spring beans.
+  (3) `@Bean`
+      - Indicates that a ***method*** is a provider of a bean instance for the Spring container. 
+      - In Spring Framework, a bean is an object that is managed by the ***Spring IoC (Inversion of Control) container***, which provides various benefits such as dependency injection and lifecycle management.
+      - By annotating a method with `@Bean`, we are telling the Spring container that the return value of that method is a bean that should be managed by the container. 
+      - When the Spring container starts up, the container will then call the method to obtain an instance of the bean whenever the bean is needed by other parts of the application.
+      ```Java
+      @Bean
+      public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+      }
+      ```
+      - In this case, the Spring container will create a new instance of BCryptPasswordEncoder and register it as a bean with the name passwordEncoder.
+  (4) `@Autowired`
+      - Automatically inject a dependency into a Spring bean.
+      - ***Constructor injection** is generally considered to be the best practice for dependency injection in Spring.
+      ```Java
+
+      @Service
+      public class MyService {
+
+        private final MyRepository myRepository;
+
+        @Autowired
+        public MyService(MyRepository myRepository) {
+            this.myRepository = myRepository;
+        }
+      }
+      ```
+  (5) `@PostMapping`
+      - Equal to `@RequestMapping(method = RequestMethod. POST)`
+      - Maps HTTP POST requests to a specific controller method.
+        - `@PostMapping("/authenticate/host")`
+  (6) `@RequestBody`
+      - Indicates that the parameter of a controller method should be bound to the body of the HTTP request.
+      - Spring will automatically ***deserialize*** the request body into an instance of the parameter type. 
+      - This is useful when the HTTP request contains data in a specific format such as JSON, XML, or form data.
+  (7) `@RestController`
+      - Combines the `@Controller` and `@ResponseBody` annotations, making it easier to create RESTful web services.
+      - Indicates that the class is a controller that handles HTTP requests and returns the response as a JSON, XML or any other representation.
+  (8) 
