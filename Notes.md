@@ -133,3 +133,11 @@
       - Adds for a method in an exception handler class.
       - Indicates that a method should be invoked when a specific exception is thrown.
       - See "/exception/CustomExceptionHandler"
+15. `@Transactional(xxx)`
+    - Transactions ensure that a group of database operations are executed atomically, meaning that they are either all committed to the database or all rolled back in case of an error.
+    - `@Transactional(isolation = Isolation.SERIALIZABLE)`
+      - The isolation parameter specifies the isolation level of the transaction and describes how changes applied by concurrent transactions are visible to each other.
+      - `Isolation` level defines how the database handles concurrent transactions that access the same data.
+      - `SERIALIZABLE` is the highest level of isolation. It prevents all mentioned concurrency side effects, but can lead to the lowest concurrent access rate because it executes concurrent calls sequentially. In other words, concurrent execution of a group of serializable transactions has the same result as executing them in serial.
+      - `isolation = Isolation.SERIALIZABLE` indicates that the transaction should be executed in a way that ensures that the result is the same as if the transactions were executed one after the other, in a serialized manner. 
+      - This level provides the highest level of data consistency, but it can also lead to reduced concurrency and increased locking.
