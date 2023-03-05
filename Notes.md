@@ -35,19 +35,19 @@
 4. `@Autowired`
    - Automatically inject a dependency into a Spring bean.
    - ***Constructor injection*** is generally considered to be the best practice for dependency injection in Spring.
-     ```Java
-     @Service
-     public class MyService {
-
-       private final MyRepository myRepository;
-
-       // constructor injection
-       @Autowired
-       public MyService(MyRepository myRepository) {
-           this.myRepository = myRepository;
-       }
-     }
-     ```
+```Java
+    @Service
+    public class MyService {
+        private final MyRepository myRepository;
+        
+        // constructor injection
+        @Autowired
+        public MyService(MyRepository myRepository) {
+            this.myRepository = myRepository;
+        }
+    }
+```
+     
 5. `@PostMapping`
    - Equal to `@RequestMapping(method = RequestMethod. POST)`
    - Maps HTTP POST requests to a specific controller method.
