@@ -34,7 +34,6 @@
       - Automatically inject a dependency into a Spring bean.
       - ***Constructor injection** is generally considered to be the best practice for dependency injection in Spring.
       ```Java
-
       @Service
       public class MyService {
 
