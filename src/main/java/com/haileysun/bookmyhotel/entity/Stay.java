@@ -86,7 +86,11 @@ public class Stay implements Serializable {
         return availabilities;
     }
 
-    // TODO - 课件里这有个setter, 忘记删了?
+    // TODO - return this?
+    public Stay setAvailabilities(List<StayAvailability> availabilities) {
+        this.availabilities = availabilities;
+        return this;
+    }
 
     public static class Builder {
         @JsonProperty("stay_id")

@@ -54,6 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 
                 .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
+                .antMatchers("/stays").permitAll()
+                .antMatchers("/stays/*").permitAll()
 
                 // configures how requests that do not match any previous rules are authorized.
                 // In this case, any request that does not match /register/* is required to be authenticated
