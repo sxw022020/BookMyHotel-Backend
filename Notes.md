@@ -160,4 +160,6 @@
             }
         }
       ```
-    - It is typically used to inject configuration properties or other values into Spring-managed beans
+    - It is typically used to inject configuration properties or other values into Spring-managed beans.
+
+stop: Stay entity
