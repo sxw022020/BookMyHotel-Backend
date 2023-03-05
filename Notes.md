@@ -77,15 +77,46 @@
 12. `@JsonIgnore`
     - A Jackson annotation used in Java.
     - Indicates that a particular field or property of a Java class should be ignored during serialization and deserialization.
-      - Serialization:
+      - ***Serialization***:
         - The process of converting a Java object into a JSON representation,
-      - Deserialization:
+      - ***Deserialization***:
         - The process of converting JSON into a Java object.
     - When `@JsonIgnore` is added to a field or property in a Java class, Jackson will not include that field or property in the JSON output during serialization. 
     - Similarly, when deserializing JSON input into a Java object, Jackson will ignore the JSON field that corresponds to the ignored Java field or property.
 13. `@JsonDeserialize(xxx)`
     - Specifies a custom deserializer for a Java ***object field*** or ***setter method***.
+    ```Java
+    public class User {
+
+        private String username;
+
+        // Way 1 - field
+        // the "password" field should be deserialized using the PasswordDeserializer class
+        @JsonDeserialize(using = PasswordDeserializer.class)
+        private Password password;
+
+        // Or
+    
+        // Way 2 - setter
+        @JsonDeserialize(using = PasswordDeserializer.class)
+        public void setPassword(Password password) {
+            this.password = password;
+        }
+    }
+
+    // must implement the `JsonDeserializer interface` and 
+    // override the `deserialize()` method to perform the custom deserialization logic
+    public class PasswordDeserializer extends JsonDeserializer<Password> {
+
+        @Override
+        public Password deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            // Perform custom deserialization logic
+            return new Password(jp.getText());
+        }
+    }
+    ```
     - When a Java class field or setter method is annotated with @JsonDeserialize, it indicates that the corresponding JSON property should be deserialized using a custom deserializer class instead of the default deserialization mechanism provided by Jackson.
+    - When combining with ***Builder Pattern***:
     ```Java
     @JsonDeserialize(builder = User.Builder.class)
     public class User implements Serializable {

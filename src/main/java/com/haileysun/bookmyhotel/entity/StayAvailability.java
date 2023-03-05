@@ -26,7 +26,7 @@ public class StayAvailability implements Serializable {
     public StayAvailability() {}
 
     // another constructor
-    public StayAvailability(Builder builder) {
+    private StayAvailability(Builder builder) {
         this.id = builder.id;
         this.stay = builder.stay;
         this.state = builder.state;
