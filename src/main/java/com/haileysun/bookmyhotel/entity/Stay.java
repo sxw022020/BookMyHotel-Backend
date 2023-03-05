@@ -17,7 +17,6 @@ public class Stay implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    // AUTO: the JPA provider will automatically choose the appropriate strategy based on the database you're using
     private Long stay_id;
     private String name;
     private String description;
@@ -86,7 +85,7 @@ public class Stay implements Serializable {
         return availabilities;
     }
 
-    // TODO - 课件里这有个setter
+    // TODO - 课件里这有个setter, 忘记删了?
 
     public static class Builder {
         @JsonProperty("id")

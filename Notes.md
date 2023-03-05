@@ -74,6 +74,8 @@
     - Table name as "xxx" for a persistent entity.
 10. `@Id`
     - Defines primary key of a persistent entity.
+      - `@GeneratedValue(strategy = xxx)`
+        - JPA provider will generate the primary key value based on assigned "strategy"
 11. `@JsonProperty("custom_col_name")`
     - Specifies the names of the JSON properties that are returned to the response.
     - If you use ***Builder Pattern*** as a constructor, put `@JsonProperty("custom_col_name")` in Builder class.
@@ -161,5 +163,23 @@
         }
       ```
     - It is typically used to inject configuration properties or other values into Spring-managed beans.
+17. `@ManyToOne`
+    - Defines a many-to-one relationship between two entities.
+    - ***Many***: current class (i.e. current entity)
+    - ***One***: another class (i.e. another entity) which is annotated by `@ManyToOne`
+    ```java
+    public class Stay {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long stay_id;
+    
+        // Many: Stay
+        // One: User
+        @ManyToOne
+        @JoinColumn(name = "user_id")
+        private User host;
+    
+        // ...
+    }
 
-stop: Stay entity
+    ```
