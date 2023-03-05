@@ -64,7 +64,10 @@
     - This is useful when the HTTP request contains data in a specific format such as JSON, XML, or form data.
 7. `@RestController`
     - Combines the `@Controller` and `@ResponseBody` annotations, making it easier to create RESTful web services.
+      - `@ResponseBody`
+        - Indicates that the User object should be extracted from the request body. 
     - Indicates that the class is a controller that handles HTTP requests and returns the response as a JSON, XML or any other representation.
+    - If only use `@Controller`, you need to add `@ResponseBody` annotation to each of Controller method if you want to return a JSON or XML response.
 8. `@Entity`
     - Marks a Java class as a persistent entity, meaning that it can be mapped to a corresponding table in a relational database.
 9. `@Table(name = "table_name")`
