@@ -15,7 +15,10 @@ public class StayAvailability implements Serializable {
     @EmbeddedId
     private StayAvailabilityID stayAvailabilityID;
 
-    // TODO - MapsId?
+    /**
+     * Use @MapsId to specify the correspondent primary key
+     * defined in the @Embeddable composite_primary_key class
+     */
     @MapsId("stay_id")
     @ManyToOne
     private Stay stay;

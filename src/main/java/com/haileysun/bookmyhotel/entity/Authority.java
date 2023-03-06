@@ -5,10 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "authority")
-public class Authority {
+public class Authority implements Serializable {
+    /** A serializable class can declare its own serialVersionUID explicitly */
+
+    // TODO
+    /** Why the UIDs are the same for all class?
+     *  - When deserializing, spring will only compare with current class's UID
+     */
     private static final long serialVersionUID = 1L;
 
     @Id
