@@ -188,7 +188,7 @@
     - `@JoinColumn(name = "xxx", referencedColumnName = "xxx")`
       - Joins two tables in a many-to-one or one-to-one relationship.
       - `name`
-        - specifies name of foreign key in current class (i.e. current entity)
+        - specifies name of ***foreign key*** in current class (i.e. current entity)
       - `referencedColumnName`
         - specifies the name of the primary key column in another class (i.e. another entity)
         - If the `referencedColumnName` attribute is not specified, Spring framework will use the default primary key column name of the referenced entity.
