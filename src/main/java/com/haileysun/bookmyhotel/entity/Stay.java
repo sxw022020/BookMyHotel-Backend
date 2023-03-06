@@ -86,7 +86,7 @@ public class Stay implements Serializable {
         return availabilities;
     }
 
-    // TODO - return this?
+    // extra setAvailabilities - because StayService will use it
     public Stay setAvailabilities(List<StayAvailability> availabilities) {
         this.availabilities = availabilities;
         return this;

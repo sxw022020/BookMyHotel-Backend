@@ -21,7 +21,7 @@ public class StayAvailabilityID implements Serializable {
         this.localDate = localDate;
     }
 
-    // overrided equals()
+    // override equals()
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,7 +32,7 @@ public class StayAvailabilityID implements Serializable {
         return stay_id.equals(that.stay_id) && localDate.equals(that.localDate);
     }
 
-    // overrided hashCode()
+    // override hashCode()
     public int hashCode() {
         return Objects.hash(stay_id, localDate);
     }
@@ -44,7 +44,6 @@ public class StayAvailabilityID implements Serializable {
 
     public StayAvailabilityID setStayId(Long stayId) {
         this.stay_id = stayId;
-        // TODO - purpose?
         return this;
     }
 
@@ -54,7 +53,6 @@ public class StayAvailabilityID implements Serializable {
 
     public StayAvailabilityID setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
-        // TODO - purpose?
         return this;
     }
 }
