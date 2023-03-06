@@ -14,7 +14,7 @@
 - Overall, the servlet container and the DispatcherServlet work together to intercept incoming requests, determine which controller to invoke, and process the request and generate the response. Spring provides a number of abstractions and configuration options to make this process flexible and customizable.
 
 ### Composite Key:
-- link: [](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
+- [link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
 
 ### Annotations:
 1. `@EnableWebSecurity`
