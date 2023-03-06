@@ -76,6 +76,8 @@
     - Defines primary key of a persistent entity.
       - `@GeneratedValue(strategy = xxx)`
         - JPA provider will generate the primary key value based on assigned "strategy"
+    - `@EmbeddedId`
+      - ***Note:*** the `@EmbeddedId` annotation is used in conjunction with the `@Embeddable` annotation, which is used to specify that a class represents a composite primary key. The `@Embeddable` annotation is used on the class that represents the composite primary key.
 11. `@JsonProperty("custom_col_name")`
     - Specifies the names of the JSON properties that are returned to the response.
     - If you use ***Builder Pattern*** as a constructor, put `@JsonProperty("custom_col_name")` in Builder class.

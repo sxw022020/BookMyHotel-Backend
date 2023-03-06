@@ -13,8 +13,7 @@ public class StayAvailability implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    // TODO
-    private StayAvailabilityKey stayAvailabilityID;
+    private StayAvailabilityID stayAvailabilityID;
 
     // TODO - MapsId?
     @MapsId("stay_id")
@@ -23,7 +22,6 @@ public class StayAvailability implements Serializable {
     private StayAvailabilityState state;
 
     // default constructor
-    // TODO - why?
     public StayAvailability() {}
 
     // another constructor
@@ -34,7 +32,7 @@ public class StayAvailability implements Serializable {
     }
 
     // getters
-    public StayAvailabilityKey getId() {
+    public StayAvailabilityID getId() {
         return stayAvailabilityID;
     }
 
@@ -48,7 +46,6 @@ public class StayAvailability implements Serializable {
 
     // Builder pattern
     public static class Builder {
-        // TODO
         /**
          * - When an instance of this class is serialized to JSON, the resulting object
          * will have a property named "first_name" with the value of the firstName field.
@@ -56,7 +53,7 @@ public class StayAvailability implements Serializable {
          * the "first_name" property in the JSON data will be mapped to the firstName field.
          */
         @JsonProperty("stayAvailability_id")
-        private StayAvailabilityKey stayAvailabilityID;
+        private StayAvailabilityID stayAvailabilityID;
 
         @JsonProperty("stay")
         private Stay stay;
@@ -65,7 +62,7 @@ public class StayAvailability implements Serializable {
         private StayAvailabilityState state;
 
         // setters
-        public Builder setId(StayAvailabilityKey id) {
+        public Builder setId(StayAvailabilityID id) {
             this.stayAvailabilityID = id;
             return this;
         }

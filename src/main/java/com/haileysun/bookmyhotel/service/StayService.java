@@ -41,7 +41,7 @@ public class StayService {
                     new StayAvailability
                             .Builder()
                             .setId(
-                                    new StayAvailabilityKey(stay.getId(), date))
+                                    new StayAvailabilityID(stay.getId(), date))
                             .setStay(stay)
                             .setState(StayAvailabilityState.AVAILABLE)
                             .build());
