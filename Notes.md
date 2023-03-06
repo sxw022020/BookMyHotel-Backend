@@ -13,14 +13,18 @@
   - Once the view is resolved, the DispatcherServlet invokes the view to generate the response content and send it back to the client.
 - Overall, the servlet container and the DispatcherServlet work together to intercept incoming requests, determine which controller to invoke, and process the request and generate the response. Spring provides a number of abstractions and configuration options to make this process flexible and customizable.
 
-## Why not need to include `aws-rds` in pom.xml for mysql connection?
-    - AWS RDS is a managed database service provided by Amazon Web Services, which means it is not a library or dependency that you need to include in your project.
-    - AWS RDS is essentially a platform that provides you with a managed MySQL database instance that you can connect to using standard MySQL drivers and APIs. 
-    - When you create an RDS instance, AWS takes care of the underlying infrastructure and configuration for you, including installing and configuring the MySQL database engine.
-    - To connect to an RDS MySQL instance from your Spring Boot application, you only need to include the `MySQL driver` as a dependency in your pom.xml file, and then configure the connection parameters for your RDS instance in your application's configuration file.
+## Why NOT need to include `aws-rds` in pom.xml for mysql connection?
+- AWS RDS is a managed database service provided by Amazon Web Services, which means it is not a library or dependency that you need to include in your project.
+- AWS RDS is essentially a platform that provides you with a managed MySQL database instance that you can connect to using standard MySQL drivers and APIs. 
+- When you create an RDS instance, AWS takes care of the underlying infrastructure and configuration for you, including installing and configuring the MySQL database engine.
+- ***To connect to an RDS MySQL instance from your Spring Boot application***, you only need to include the `MySQL driver` as a dependency in your pom.xml file, and then configure the connection parameters for your RDS instance in your application's configuration file.
+
+## Why need to include `aws-s3` in pom.xml for operations between Spring Boot and AWS S3?
+- `aws-java-sdk-s3`  includes the classes and methods necessary to interact with AWS S3.
+- You will also need to provide AWS credentials to your Spring Boot application in order to access your S3 bucket.
 
 ## Composite Key:
-    - [Link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
+- [Link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
 
 ## Annotations:
 1. `@EnableWebSecurity`
