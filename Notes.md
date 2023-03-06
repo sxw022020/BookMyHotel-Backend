@@ -23,7 +23,7 @@
 - `aws-java-sdk-s3`  includes the classes and methods necessary to interact with AWS S3.
 - You will also need to provide AWS credentials to your Spring Boot application in order to access your S3 bucket.
 
-## Composite Key:
+## Composite Primary Key in HPA and Hibernate:
 - [Link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
 
 ## Annotations:
