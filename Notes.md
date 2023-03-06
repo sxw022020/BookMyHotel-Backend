@@ -14,7 +14,7 @@
 - Overall, the servlet container and the DispatcherServlet work together to intercept incoming requests, determine which controller to invoke, and process the request and generate the response. Spring provides a number of abstractions and configuration options to make this process flexible and customizable.
 
 ## Composite Key:
-- [link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
+- [Link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
 
 ## Annotations:
 1. `@EnableWebSecurity`
@@ -81,6 +81,8 @@
         - JPA provider will generate the primary key value based on assigned "strategy"
     - `@EmbeddedId`
       - ***Note:*** the `@EmbeddedId` annotation is used in conjunction with the `@Embeddable` annotation, which is used to specify that a class represents a composite primary key. The `@Embeddable` annotation is used on the class that represents the composite primary key.
+      - `@Embeddable`
+        - An embeddable class is a value type that can be embedded in other entities or value types.
 11. `@JsonProperty("custom_col_name")`
     - Specifies the names of the JSON properties that are returned to the response.
     - If you use ***Builder Pattern*** as a constructor, put `@JsonProperty("custom_col_name")` in Builder class.
