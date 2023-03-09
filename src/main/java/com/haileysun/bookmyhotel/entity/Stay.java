@@ -18,7 +18,7 @@ public class Stay implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long stay_id;
-    private String name;
+    private String stayName;
     private String description;
     private String address;
 
@@ -32,6 +32,9 @@ public class Stay implements Serializable {
     // TODO - mappedBy + FetchType.LAZY?
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StayAvailability> availabilities;
+
+    @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<StayImage> images;
 
     // default constructor
     /**
@@ -49,12 +52,13 @@ public class Stay implements Serializable {
     // `private` --> only Builder can access it, outside caller cannot access it
     private Stay(Builder builder) {
         this.stay_id = builder.stay_id;
-        this.name = builder.name;
+        this.stayName = builder.stayName;
         this.description = builder.description;
         this.address = builder.address;
         this.guestNumber = builder.guestNumber;
         this.host = builder.host;
         this.availabilities = builder.availabilities;
+        this.images = builder.images;
     }
 
     // getters
@@ -63,7 +67,7 @@ public class Stay implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return stayName;
     }
 
     public String getDescription() {
@@ -92,12 +96,21 @@ public class Stay implements Serializable {
         return this;
     }
 
+    // getter and setter of images
+    public List<StayImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<StayImage> images) {
+        this.images = images;
+    }
+
     public static class Builder {
         @JsonProperty("stay_id")
         private Long stay_id;
 
-        @JsonProperty("name")
-        private String name;
+        @JsonProperty("stay_name")
+        private String stayName;
 
         @JsonProperty("description")
         private String description;
@@ -114,13 +127,16 @@ public class Stay implements Serializable {
         @JsonProperty("availabilities")
         private List<StayAvailability> availabilities;
 
+        @JsonProperty("images")
+        private List<StayImage> images;
+
         public Builder setId(Long id) {
             this.stay_id = id;
             return this;
         }
 
         public Builder setName(String name) {
-            this.name = name;
+            this.stayName = name;
             return this;
         }
 
@@ -146,6 +162,11 @@ public class Stay implements Serializable {
 
         public Builder setAvailabilities(List<StayAvailability> availabilities) {
             this.availabilities = availabilities;
+            return this;
+        }
+
+        public Builder setImages(List<StayImage> images) {
+            this.images = images;
             return this;
         }
 

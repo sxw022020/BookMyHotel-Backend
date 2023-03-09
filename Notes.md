@@ -222,7 +222,7 @@
       - Specifies the name of the field or property in the child entity that owns the relationship.
     - `cascade` 
       - Specifies that changes to the parent entity should cascade to the child entities.
-      - `fetch = FetchType.LAZY` 
-        - Specifies that a related entity should not be loaded from the database until it is explicitly accessed. 
-      - `fetch = FetchType.EAGER`
-        - Specifies that a related entity should be loaded immediately along with the parent entity.
+    - `fetch = FetchType.LAZY` 
+      - Specifies that a related entity should not be loaded from the database until it is explicitly accessed. 
+    - `fetch = FetchType.EAGER`
+      - Specifies that a related entity should be loaded immediately along with the parent entity.

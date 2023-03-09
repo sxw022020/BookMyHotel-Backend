@@ -29,4 +29,9 @@ public class CustomExceptionHandler {
     public final ResponseEntity<String> handleUserNotExistException(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler(AWSS3UploadException.class)
+    public final ResponseEntity<String> handleAWSS3UploadException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

@@ -1,9 +1,11 @@
 package com.haileysun.bookmyhotel.controller;
 
 import com.haileysun.bookmyhotel.entity.Stay;
+import com.haileysun.bookmyhotel.entity.User;
 import com.haileysun.bookmyhotel.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -31,8 +33,23 @@ public class StayController {
 
     // 3. add a stay
     @PostMapping("/stays")
-    public void addStay(@RequestBody Stay stay) {
-        stayService.addStay(stay);
+    public void addStay(@RequestParam("stay_name") String stayName,
+                        @RequestParam("address") String address,
+                        @RequestParam("description") String description,
+                        @RequestParam("host_name") String hostName,
+                        @RequestParam("guest_number") int guestNumber,
+                        @RequestParam("images") MultipartFile[] images) {
+
+        Stay stay = new Stay
+                .Builder()
+                .setName(stayName)
+                .setAddress(address)
+                .setDescription(description)
+                .setHost(new User.Builder().setUsername(hostName).build())
+                .setGuestNumber(guestNumber)
+                .build();
+
+        stayService.addStay(stay, images);
     }
 
     // 4. delete a stay
