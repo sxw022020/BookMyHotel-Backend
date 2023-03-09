@@ -1,5 +1,6 @@
 package com.haileysun.bookmyhotel.config;
 
+import com.haileysun.bookmyhotel.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +10,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -26,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private JwtFilter jwtFilter;
 
     /**
      * Define the security configuration for your application's HTTP endpoints
@@ -54,8 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 
                 .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
-                .antMatchers("/stays").permitAll()
-                .antMatchers("/stays/*").permitAll()
+                .antMatchers("/stays").hasAuthority("ROLE_HOST")
+                .antMatchers("/stays/*").hasAuthority("Role_HOST")
 
                 // configures how requests that do not match any previous rules are authorized.
                 // In this case, any request that does not match /register/* is required to be authenticated
@@ -68,6 +74,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 // disables CSRF protection
                 .disable();
+
+        http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
