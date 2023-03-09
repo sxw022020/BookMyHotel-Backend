@@ -23,8 +23,8 @@ import java.util.List;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
     private final String HEADER = "Authorization";
-    // TODO
-    private final String PREFIX = "Bearer ";
+
+    private final String BEARER_PREFIX = "Bearer ";
     private AuthorityRepository authorityRepository;
     private JwtUtil jwtUtil;
 
@@ -40,8 +40,8 @@ public class JwtFilter extends OncePerRequestFilter {
         final String authorizationHeader = httpServletRequest.getHeader(HEADER);
 
         String jwt = null;
-        if (authorizationHeader!= null && authorizationHeader.startsWith(PREFIX)) {
-            jwt = authorizationHeader.substring(7);
+        if (authorizationHeader != null && authorizationHeader.startsWith(BEARER_PREFIX)) {
+            jwt = authorizationHeader.substring(BEARER_PREFIX.length());
         }
 
         if (jwt != null && jwtUtil.validateToken(jwt) && SecurityContextHolder.getContext().getAuthentication() == null) {
