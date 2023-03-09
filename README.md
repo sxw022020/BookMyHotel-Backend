@@ -19,7 +19,7 @@
 
 ## Databases
   - Structured data: MySQL on AWS RDS, with Hibernate
-  - Media files: S3 on AWS
+  - Media files: S3 on AWS (including: bucket, user)
 
 ## Deployment
-  - AWS EC2 via Docker
+  - AWS EC2 (including: Security Groups) via Docker
