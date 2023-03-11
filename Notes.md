@@ -26,6 +26,16 @@
 ## Composite Primary Key in HPA and Hibernate:
 - [Link](https://hellokoding.com/composite-primary-key-in-jpa-and-hibernate/)
 
+## Security Group and RDS-MySQL
+- (1) Create a security group with only allowing requests for PORT 3306 (default port for MySQL)
+  - 3306 is a default port num for MySQL, if the request has request for 3306, 
+    that means it 
+- (2) Apply (1)'s security group to RDS-MySQL
+
+## Spring Security:
+1. `Princile`
+   - 
+
 ## Annotations:
 1. `@EnableWebSecurity`
     - When this annotation is used, Spring Security's web security configuration is enabled, which allows you to secure your application's endpoints using a variety of mechanisms such as form-based authentication, HTTP basic authentication, and OAuth2 authentication.
