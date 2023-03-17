@@ -13,6 +13,23 @@
   - Once the view is resolved, the DispatcherServlet invokes the view to generate the response content and send it back to the client.
 - Overall, the servlet container and the DispatcherServlet work together to intercept incoming requests, determine which controller to invoke, and process the request and generate the response. Spring provides a number of abstractions and configuration options to make this process flexible and customizable.
 
+## Spring Security Filter:
+- Spring Security is a powerful and highly customizable authentication and access control framework for Java applications. 
+- One of the core components of Spring Security is its filter chain, which is a series of Servlet filters responsible for handling various aspects of authentication, authorization, and security-related tasks.
+- When a request comes into a Spring Security-enabled application, it passes through a series of filters in the filter chain. 
+- Each filter is responsible for a specific security task and processes the request accordingly. 
+- If any filter in the chain determines that the request is not allowed or not authenticated, it can either redirect the user to an authentication or error page or return an HTTP error response.
+- These are just some examples of the filters available in Spring Security. 
+- The framework allows you to configure the filter chain according to your specific requirements, and you can even create custom filters to handle unique security scenarios. 
+- The order in which filters are defined in the chain is important, as it determines the sequence in which the filters process the incoming requests.
+- To configure the Spring Security filter chain, you can use:
+  - (1) Java-based configuration with the @EnableWebSecurity annotation
+    - `@EnableWebSecurity`
+      - Enable web security features for a Java-based application.
+      - By adding this annotation to a class that extends WebSecurityConfigurerAdapter, you can configure and customize various aspects of Spring Security, such as authentication, authorization, and filter chain setup.
+      - Classes annotated with `@EnableWebSecurity` are treated as ***configuration classes*** by Spring.
+  - (2) XML-based configuration with the <http> element.
+
 ## Why NOT need to include `aws-rds` in pom.xml for mysql connection?
 - AWS RDS is a managed database service provided by Amazon Web Services, which means it is not a library or dependency that you need to include in your project.
 - AWS RDS is essentially a platform that provides you with a managed MySQL database instance that you can connect to using standard MySQL drivers and APIs. 
