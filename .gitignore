@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### Notes and Question ##
+### Notes and Questions ##
 Notes.md
 Questions.md
 
