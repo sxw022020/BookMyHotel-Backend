@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * The @Embeddable class should meet the following requirements
+ * The @Embeddable class should meet the following requirements:
  *
  * 1. Implements Serializable
  *
