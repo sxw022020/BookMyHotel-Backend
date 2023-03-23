@@ -11,11 +11,21 @@ import java.util.HashMap;
 
 @Component
 public class JwtUtil {
+    /**
+     * In total: 10 days
+     *  - 1 second = 1000 milliseconds
+     *  - 60: seconds in one minute
+     *  - 60: minutes in one hour
+     *  - 24: hours in one day
+     *  - 10: 10 days
+     */
+    private static final long TOKEN_VALID_DURATION =  1000L * 60 * 60 * 24 * 10;
+
     @Value("{jwt.secret}")
     private String secret;
 
     /**
-     * This code snippet generates a JSON Web Token (JWT) using the JJWT library. Here is what each line of the code does:
+     * This code snippet generates a JSON Web Token (JWT) using the JJWT (Java JWT ) library. Here is what each line of the code does:
      *
      * Jwts.builder(): This creates a new JWT builder instance.
      *
@@ -38,15 +48,20 @@ public class JwtUtil {
                 .setClaims(new HashMap<>())
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALID_DURATION)) // cast to long
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
 
+    // Get claim
     private Claims extractClaims(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
     }
 
+    // Get details in the claim
     public String extractUsername(String token) {
         return extractClaims(token).getSubject();
     }
