@@ -31,16 +31,8 @@ public class Authority implements Serializable {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
-    }
-
     public String getAuthority() {
         return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
     }
 
     // Empty constructor

@@ -39,6 +39,7 @@ public class StayController {
                         @RequestParam("description") String description,
                         @RequestParam("guest_number") int guestNumber,
                         @RequestParam("images") MultipartFile[] images,
+                        // Spring will automatically inject the authenticated Principal into the method, allowing you to access its information.
                         Principal principal) {
 
         Stay stay = new Stay

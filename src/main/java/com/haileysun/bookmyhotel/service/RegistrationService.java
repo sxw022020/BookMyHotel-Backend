@@ -39,8 +39,7 @@ public class RegistrationService {
         // add user info to database
         userRepository.save(user);
         authorityRepository.save(
-                new Authority
-                .Builder()
+                new Authority.Builder()
                 .setUsername(user.getUsername())
                 .setAuthority(role.name())
                 .build());
