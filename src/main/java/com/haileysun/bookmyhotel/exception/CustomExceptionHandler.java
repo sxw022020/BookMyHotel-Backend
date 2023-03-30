@@ -34,4 +34,14 @@ public class CustomExceptionHandler {
     public final ResponseEntity<String> handleAWSS3UploadException(Exception e, WebRequest request) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(AWSLocationServiceException.class)
+    public final ResponseEntity<String> handleAWSLocationServiceException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InvalidStayAddressException.class)
+    public final ResponseEntity<String> handleInvalidStayAddressException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

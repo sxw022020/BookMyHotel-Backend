@@ -1,6 +1,7 @@
 package com.haileysun.bookmyhotel.service;
 
 import com.haileysun.bookmyhotel.entity.*;
+import com.haileysun.bookmyhotel.repository.LocationRepository;
 import com.haileysun.bookmyhotel.repository.StayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,16 @@ import java.util.List;
 public class StayService {
     private StayRepository stayRepository;
     private ImageStorageService imageStorageService;
+    private LocationRepository locationRepository;
+    private LocationService locationService;
 
     // constructor injection
     @Autowired
-    public StayService(StayRepository stayRepository, ImageStorageService imageStorageService) {
+    public StayService(StayRepository stayRepository, ImageStorageService imageStorageService, LocationRepository locationRepository, LocationService locationService) {
         this.stayRepository = stayRepository;
         this.imageStorageService = imageStorageService;
+        this.locationRepository = locationRepository;
+        this.locationService = locationService;
     }
 
     // 1. find list of stays by host
@@ -66,8 +71,12 @@ public class StayService {
         }
         stay.setImages(stayImages);
 
-        // 3. save stay to repository
+        // 3. save stay with images to repository
         stayRepository.save(stay);
+
+        // 4. get and save location
+        Location location = locationService.getLatLon(stay.getId(), stay.getAddress());
+        locationRepository.save(location);
     }
 
     // 4. delete a stay

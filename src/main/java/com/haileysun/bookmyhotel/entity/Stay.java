@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Stay implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long stay_id;
+    private Long id;
     private String stayName;
     private String description;
     private String address;
@@ -26,8 +27,9 @@ public class Stay implements Serializable {
     private int guestNumber;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "host_id") // specify the foreign key column that links one entity to another
     private User host;
+
     @JsonIgnore
     // TODO - mappedBy + FetchType.LAZY?
     @OneToMany(mappedBy = "stay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -51,7 +53,7 @@ public class Stay implements Serializable {
     // Builder Pattern for constructor
     // `private` --> only Builder can access it, outside caller cannot access it
     private Stay(Builder builder) {
-        this.stay_id = builder.stay_id;
+        this.id = builder.id;
         this.stayName = builder.stayName;
         this.description = builder.description;
         this.address = builder.address;
@@ -63,7 +65,7 @@ public class Stay implements Serializable {
 
     // getters
     public Long getId() {
-        return stay_id;
+        return id;
     }
 
     public String getName() {
@@ -107,7 +109,7 @@ public class Stay implements Serializable {
 
     public static class Builder {
         @JsonProperty("stay_id")
-        private Long stay_id;
+        private Long id;
 
         @JsonProperty("stay_name")
         private String stayName;
@@ -131,7 +133,7 @@ public class Stay implements Serializable {
         private List<StayImage> images;
 
         public Builder setId(Long id) {
-            this.stay_id = id;
+            this.id = id;
             return this;
         }
 

@@ -52,7 +52,7 @@ public class LocationService {
             List<SearchForTextResult> searchForTextResults = response.results();
 
             if (searchForTextResults.isEmpty()) {
-                throw new InvalidStayAddressException("Failed to find stay address");
+                throw new InvalidStayAddressException("Failed to find stay address!");
             }
 
             // extract the first `Place` object from the search results and retrieve its latitude and longitude coordinates.
@@ -65,13 +65,13 @@ public class LocationService {
             Place place = searchForTextResults.get(0).place();
             List<Double> coordinates = place.geometry().point();
             double lat = coordinates.get(1);
-            double lng = coordinates.get(0);
+            double lon = coordinates.get(0);
 
-            return new Location(id, new GeoPoint(lat, lng));
+            return new Location(id, new GeoPoint(lat, lon));
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new AWSLocationServiceException("Failed to encode stay address");
+            throw new AWSLocationServiceException("Failed to encode stay address!");
         }
     }
 }

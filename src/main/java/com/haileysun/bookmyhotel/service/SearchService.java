@@ -36,6 +36,6 @@ public class SearchService {
         List<Long> filteredStayIDs = stayAvailabilityRepository.findByDateBetweenAndStateIsAvailable(stayIDs, checkinDate, checkoutDate.minusDays(1), duration);
 
         // 4. [StayRepository] find stays based on IDs ad guest number
-        return stayRepository.findByIdAndGuestNumberGreaterThanEqual(filteredStayIDs, guestNumber);
+        return stayRepository.findByIdInAndGuestNumberGreaterThanEqual(filteredStayIDs, guestNumber);
     }
 }
