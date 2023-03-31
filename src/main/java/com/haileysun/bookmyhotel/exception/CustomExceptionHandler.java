@@ -44,4 +44,19 @@ public class CustomExceptionHandler {
     public final ResponseEntity<String> handleInvalidStayAddressException(Exception e, WebRequest request) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InvalidReservationDateException.class)
+    public final ResponseEntity<String> handleInvalidReservationDateException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ReservationNotFoundException.class)
+    public final ResponseEntity<String> handleReservationNotFoundException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(StayDeletionException.class)
+    public final ResponseEntity<String> handleStayDeletionException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
 }
