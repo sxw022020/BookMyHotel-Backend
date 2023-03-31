@@ -3,7 +3,6 @@ package com.haileysun.bookmyhotel.controller;
 import com.haileysun.bookmyhotel.entity.Reservation;
 import com.haileysun.bookmyhotel.entity.User;
 import com.haileysun.bookmyhotel.exception.InvalidReservationDateException;
-import com.haileysun.bookmyhotel.service.RegistrationService;
 import com.haileysun.bookmyhotel.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
