@@ -1,7 +1,10 @@
 package com.haileysun.bookmyhotel.controller;
 
+import com.haileysun.bookmyhotel.entity.Reservation;
 import com.haileysun.bookmyhotel.entity.Stay;
 import com.haileysun.bookmyhotel.entity.User;
+import com.haileysun.bookmyhotel.service.RegistrationService;
+import com.haileysun.bookmyhotel.service.ReservationService;
 import com.haileysun.bookmyhotel.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +16,13 @@ import java.util.List;
 @RestController
 public class StayController {
     private StayService stayService;
+    private ReservationService reservationService;
 
     // constructor injection
     @Autowired
-    public StayController(StayService stayService) {
+    public StayController(StayService stayService, ReservationService reservationService) {
         this.stayService = stayService;
+        this.reservationService = reservationService;
     }
 
     // 1. get the list of stays based on host name
@@ -58,5 +63,11 @@ public class StayController {
     @DeleteMapping("/stays/{stayID}")
     public void deleteStay(@PathVariable Long stayID) {
         stayService.deleteStay(stayID);
+    }
+
+    // 5. list reservations
+    @GetMapping(value = "/stays/reservations/{stayId}")
+    public List<Reservation> listReservations(@PathVariable Long stayId, Principal principal) {
+        return reservationService.listByStay(stayId);
     }
 }
