@@ -45,6 +45,11 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ReservationCollisionException.class)
+    public final ResponseEntity<String> handleReservationCollisionException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(InvalidReservationDateException.class)
     public final ResponseEntity<String> handleInvalidReservationDateException(Exception e, WebRequest request) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
