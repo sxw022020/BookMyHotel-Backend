@@ -46,7 +46,7 @@ public class Reservation implements Serializable {
         return id;
     }
 
-    public LocalDate getCheckinData() {
+    public LocalDate getCheckinDate() {
         return checkinData;
     }
 
