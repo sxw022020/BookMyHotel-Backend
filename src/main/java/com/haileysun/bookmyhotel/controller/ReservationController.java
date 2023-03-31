@@ -12,6 +12,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
+@RestController
 public class ReservationController {
     private ReservationService reservationService;
 
