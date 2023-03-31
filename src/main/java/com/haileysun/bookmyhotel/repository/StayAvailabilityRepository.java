@@ -3,6 +3,7 @@ package com.haileysun.bookmyhotel.repository;
 import com.haileysun.bookmyhotel.entity.StayAvailability;
 import com.haileysun.bookmyhotel.entity.StayAvailabilityID;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
@@ -28,4 +29,29 @@ public interface StayAvailabilityRepository extends JpaRepository<StayAvailabili
      */
     @Query(value = "SELECT sa.stayAvailabilityID.stay_id FROM StayAvailability sa WHERE sa.stayAvailabilityID.stay_id IN ?1 AND sa.state = 0 AND sa.stayAvailabilityID.local_date BETWEEN ?2 AND ?3 GROUP BY sa.stayAvailabilityID.stay_id HAVING COUNT(sa.stayAvailabilityID.local_date) = ?4")
     List<Long> findByDateBetweenAndStateIsAvailable(List<Long> stayIds, LocalDate startDate, LocalDate endData, long duration);
+
+    /**
+     * This method retrieves a list of LocalDate objects representing
+     * the dates with available stays (where sa.state = 0) for a specific stayId and within the given date range (startDate to endDate).
+     */
+    @Query(value = "SELECT sa.stayAvailabilityID.local_date FROM StayAvailability sa WHERE sa.stayAvailabilityID.stay_id = ?1 AND sa.state = 0 AND sa.stayAvailabilityID.local_date BETWEEN ?2 AND ?3")
+    List<LocalDate> countByDateBetweenAndId(Long stayId, LocalDate startDate, LocalDate endDate);
+
+    /**
+     * This method updates the state of the StayAvailability records to 1 (reserved) for a specific stayId and
+     * within the given date range (startDate to endDate).
+     * The @Modifying annotation indicates that this is an update query, which will modify the existing records in the database.
+     */
+    @Modifying
+    @Query(value = "UPDATE StayAvailability sa SET sa.state = 1 WHERE sa.stayAvailabilityID.stay_id = ?1 AND sa.stayAvailabilityID.local_date BETWEEN ?2 AND ?3")
+    void reserveByDateBetweenAndId(Long stayId, LocalDate startDate, LocalDate endDate);
+
+    /**
+     * This method updates the state of the StayAvailability records to 0 (available) for a specific stayId and
+     * within the given date range (startDate to endDate).
+     * The @Modifying annotation is also used here, as this query modifies the existing records in the database
+     */
+    @Modifying
+    @Query(value = "UPDATE StayAvailability sa SET sa.state = 0 WHERE sa.stayAvailabilityID.stay_id = ?1 AND sa.stayAvailabilityID.local_date BETWEEN ?2 AND ?3")
+    void cancelByDateBetweenAndId(Long stayId, LocalDate startDate, LocalDate endDate);
 }
