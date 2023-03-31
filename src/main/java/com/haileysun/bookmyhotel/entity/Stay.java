@@ -19,11 +19,13 @@ public class Stay implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String stayName;
+
     private String description;
+
     private String address;
 
-    @JsonProperty("guest_number")
     private int guestNumber;
 
     @ManyToOne
@@ -126,7 +128,7 @@ public class Stay implements Serializable {
         @JsonProperty("host")
         private User host;
 
-        @JsonProperty("availabilities")
+        // ignore in deserialization, so no need to use @JsonProperty
         private List<StayAvailability> availabilities;
 
         @JsonProperty("images")
