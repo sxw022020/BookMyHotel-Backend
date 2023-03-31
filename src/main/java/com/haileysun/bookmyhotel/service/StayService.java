@@ -1,7 +1,9 @@
 package com.haileysun.bookmyhotel.service;
 
 import com.haileysun.bookmyhotel.entity.*;
+import com.haileysun.bookmyhotel.exception.StayDeletionException;
 import com.haileysun.bookmyhotel.repository.LocationRepository;
+import com.haileysun.bookmyhotel.repository.ReservationRepository;
 import com.haileysun.bookmyhotel.repository.StayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +20,16 @@ public class StayService {
     private ImageStorageService imageStorageService;
     private LocationRepository locationRepository;
     private LocationService locationService;
+    private ReservationRepository reservationRepository;
 
     // constructor injection
     @Autowired
-    public StayService(StayRepository stayRepository, ImageStorageService imageStorageService, LocationRepository locationRepository, LocationService locationService) {
+    public StayService(StayRepository stayRepository, ImageStorageService imageStorageService, LocationRepository locationRepository, LocationService locationService, ReservationRepository reservationRepository) {
         this.stayRepository = stayRepository;
         this.imageStorageService = imageStorageService;
         this.locationRepository = locationRepository;
         this.locationService = locationService;
+        this.reservationRepository = reservationRepository;
     }
 
     // 1. find list of stays by host
@@ -80,7 +84,14 @@ public class StayService {
     }
 
     // 4. delete a stay
-    public void deleteStay(Long stayID) {
-        stayRepository.deleteById(stayID);
+    public void deleteStay(Long stayId) throws StayDeletionException {
+        List<Reservation> reservations = reservationRepository.findByStayAndCheckoutDateAfter(new Stay.Builder().setId(stayId).build(), LocalDate.now());
+
+        if (reservations != null && reservations.size() > 0) {
+            throw new StayDeletionException("Cannot delet stay with active reservation!");
+        }
+
+        // delete stay from stay table in database
+        stayRepository.deleteById(stayId);
     }
 }
