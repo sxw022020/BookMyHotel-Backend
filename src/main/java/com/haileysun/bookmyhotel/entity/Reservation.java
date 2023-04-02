@@ -82,7 +82,7 @@ public class Reservation implements Serializable {
         @JsonProperty("guest")
         private User guest;
 
-        @JsonProperty("stay_id")
+        @JsonProperty("stay")
         private Stay stay;
 
         public Builder setId(Long id) {
