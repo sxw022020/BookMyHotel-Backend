@@ -24,7 +24,8 @@ public class CustomLocationRepositoryImpl implements CustomLocationRepository {
     }
 
     /**
-     * Searches for Location documents in Elasticsearch based on the distance from a given latitude and longitude.
+     * Searches for Location documents in Elasticsearch
+     * based on the distance from a given latitude and longitude.
      *
      * @param lat
      * @param lon
