@@ -1,7 +1,6 @@
 package com.haileysun.bookmyhotel.service;
 
 import com.haileysun.bookmyhotel.entity.Stay;
-import com.haileysun.bookmyhotel.entity.StayAvailability;
 import com.haileysun.bookmyhotel.repository.LocationRepository;
 import com.haileysun.bookmyhotel.repository.StayAvailabilityRepository;
 import com.haileysun.bookmyhotel.repository.StayRepository;
