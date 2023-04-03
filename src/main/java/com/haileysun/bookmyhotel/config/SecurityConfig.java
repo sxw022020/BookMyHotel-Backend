@@ -17,7 +17,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.sql.DataSource;
 
 @EnableWebSecurity(debug = true)
-/** WebSecurityConfigurerAdapter provides a convenient base class for customizing Spring Security's web security configuration. */
+/**
+ * WebSecurityConfigurerAdapter provides a convenient base class for
+ * customizing Spring Security's web security configuration.
+ * */
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -25,11 +28,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
     private DataSource dataSource;
 
-    @Autowired
     private JwtFilter jwtFilter;
+
+    @Autowired
+    public SecurityConfig(DataSource dataSource, JwtFilter jwtFilter) {
+        this.dataSource = dataSource;
+        this.jwtFilter = jwtFilter;
+    }
 
     /**
      * Define the security configuration for your application's HTTP endpoints
