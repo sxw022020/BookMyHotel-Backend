@@ -3,7 +3,6 @@ package com.haileysun.bookmyhotel.config;
 import com.haileysun.bookmyhotel.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.sql.DataSource;
 
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 /** WebSecurityConfigurerAdapter provides a convenient base class for customizing Spring Security's web security configuration. */
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -77,9 +76,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable();
 
         http
+                // configures session management settings for the application.
                 .sessionManagement()
+                // sets the session creation policy to "stateless", meaning the server will not create or manage sessions.
+                // This is typical for APIs using JWT, as JWT allows for stateless authentication.
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                // chain multiple configuration options.
                 .and()
+                // `jwtFilter` will be executed before the default `UsernamePasswordAuthenticationFilter` (default class from Spring Security),
+                //  allowing it to extract and validate the JWT token from the request before the application proceeds with the default authentication process
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
