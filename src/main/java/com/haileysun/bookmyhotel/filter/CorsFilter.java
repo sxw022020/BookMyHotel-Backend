@@ -17,9 +17,16 @@ import java.io.IOException;
  * return the dedicated CORS header to the frontend.
  */
 @Component
-// the filter will be executed before all other filters that have not been assigned a specific order or have a lower precedence
+// the filter will be executed before all other filters that
+// have not been assigned a specific order or have a lower precedence
 @Order(Ordered.HIGHEST_PRECEDENCE)
-// ensures that the filter is *applied only once per request*
+/**
+ * OncePerRequestFilter：
+ *  - Filter base class that aims to guarantee
+ *    a single execution per request dispatch,
+ *    on any servlet container.
+ *    --> ensures that the filter is *applied only once per request*
+ */
 public class CorsFilter extends OncePerRequestFilter {
 
     @Override
