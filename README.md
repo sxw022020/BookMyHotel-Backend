@@ -15,7 +15,7 @@
   - React, with React-Bootstrap
 
 ## Backend
-  - RESTful service by Spring Boot
+  - RESTful services by Spring Boot
     - definition of allowed http requests in configuration 
   - Hibernate
     - interact with database
