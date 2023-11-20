@@ -23,7 +23,7 @@ public class Authority implements Serializable {
     private String authority;
 
     /**
-     * Getters and setters
+     * Getters
      *
      * @return
      */
