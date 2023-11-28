@@ -23,8 +23,8 @@ import java.util.List;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
     private final String HEADER = "Authorization";
-    private final String BEARER_PREFIX = "Bearer ";
 
+    private final String BEARER_PREFIX = "Bearer ";
     private AuthorityRepository authorityRepository;
     private JwtUtil jwtUtil;
 

@@ -60,10 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // specifies which requests are matched by a given pattern.
                 // In this case, the pattern is (HttpMethod.POST, "/register/*"),
                 // which matches any HTTP POST request to a URL that starts with /register/.
+                .antMatchers(HttpMethod.POST, "/registration/*")
                 // allows unauthenticated access to the matched requests
-                .antMatchers(HttpMethod.POST, "/registration/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
+                .permitAll()
 
+                .antMatchers(HttpMethod.POST, "/authenticate/*").permitAll()
                 .antMatchers("/stays").hasAuthority("ROLE_HOST")
                 .antMatchers("/stays/*").hasAuthority("ROLE_HOST")
                 .antMatchers("/search").hasAuthority("ROLE_GUEST")
