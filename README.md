@@ -3,12 +3,12 @@
   - A single-page Airbnb-like web application
 
 ## Features:
-  - registration as a host/guest
-    - password encryption
-    - duplicated users check
-  - login (with JWT authentication) as a host/guest
-  - stay search, reservation, listing, deletion as a guest
-  - stay adding, listing, updating, deletion as a host
+  - Registration as a host/guest
+    - Password encryption
+    - Duplicated users check
+  - Log in (with JWT authentication) as a host/guest
+  - Stay search, reservation, listing, deletion as a guest
+  - Stay adding, listing, updating, and deletion as a host
 
 ## FrontEnd
   - Typescript
