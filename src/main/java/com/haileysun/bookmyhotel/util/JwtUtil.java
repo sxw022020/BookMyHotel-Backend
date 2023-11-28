@@ -41,8 +41,7 @@ public class JwtUtil {
      *
      * .compact(): This generates the final JWT as a compact string.
      *
-     * Note that the choice of algorithm and secret key used for signing the JWT should be carefully considered for security purposes.
-     * Also, the expiration time set in this code snippet (24 hours) may not be appropriate for all use cases and should be adjusted as needed.
+     * Note that the choice of algorithm and secret key used for signing the JWT should be carefully considered for security purposes. Also, the expiration time set in this code snippet (24 hours) may not be appropriate for all use cases and should be adjusted as needed.
      */
     public String generateToken(String subject) {
         return Jwts.builder()
