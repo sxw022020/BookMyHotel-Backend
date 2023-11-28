@@ -25,7 +25,8 @@ public class JwtUtil {
     private String secret;
 
     /**
-     * This code snippet generates a JSON Web Token (JWT) using the JJWT (Java JWT ) library. Here is what each line of the code does:
+     * This code snippet generates a JSON Web Token (JWT) using the JJWT (Java JWT) library.
+     * Here is what each line of the code does:
      *
      * Jwts.builder(): This creates a new JWT builder instance.
      *
@@ -46,6 +47,20 @@ public class JwtUtil {
      */
     public String generateToken(String subject) {
         return Jwts.builder()
+                // JSON web tokens (JWTs) claims are pieces of information asserted about a subject.
+                // For example, an ID token (which is always a JWT) can contain a claim called name that
+                // asserts that the name of the user authenticating is "John Doe".
+                // In a JWT, a claim appears as a name/value pair where the name is always a string and the value can be any JSON value.
+
+                // Generally, when we talk about a claim in the context of a JWT, we are referring to the name (or key).
+                // For example, the following JSON object contains three claims (sub, name, admin):
+                /**
+                 * {
+                 *     "sub": "1234567890",
+                 *     "name": "John Doe",
+                 *     "admin": true
+                 * }
+                 */
                 .setClaims(new HashMap<>())
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
